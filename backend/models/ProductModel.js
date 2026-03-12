@@ -10,15 +10,15 @@ const createProduct = async (product) => {
     VALUES
     (
       '${escapeString(product.title)}',
-      ${parseFloat(product.price) || 0},
-      ${parseFloat(product.discount) || 0},
+      ${parseFloat(product.price).toFixed(2) || 0},        -- Decimal with 2 places
+      ${parseFloat(product.discount).toFixed(2) || 0},     -- Decimal with 2 places
       '${escapeString(product.description)}',
       '${escapeString(product.category)}',
       '${escapeString(product.brand)}',
-      ${parseFloat(product.shipping) || 0},
-      ${parseFloat(product.tax) || 0},
+      ${parseFloat(product.shipping).toFixed(2) || 0},    -- Decimal with 2 places
+      ${parseFloat(product.tax).toFixed(2) || 0},         -- Decimal with 2 places
       '${escapeString(product.tag)}',
-      '${escapeString(product.images)}'
+      '${escapeString(JSON.stringify(product.images))}'    -- Images as JSON string
     )
   `;
 
