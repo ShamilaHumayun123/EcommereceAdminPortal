@@ -16,20 +16,12 @@ export default function UploadProduct() {
   });
 
   const handleChange = (event) => {
-  const { name, value } = event.target;
-
-  // Numeric validation for price, discount, shipping, tax
-  const numericFields = ["price", "discount", "shipping", "tax"];
-  if (numericFields.includes(name)) {
-    // allow only digits and optional decimal
-    if (value !== "" && !/^\d*\.?\d*$/.test(value)) return;
-  }
-
-  setForm((current) => ({
-    ...current,
-    [name]: value,
-  }));
-};
+    const { name, value } = event.target;
+    setForm((current) => ({
+      ...current,
+      [name]: value,
+    }));
+  };
 
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files);
@@ -41,21 +33,6 @@ export default function UploadProduct() {
 
   const handleSubmit = async (event) => {
   event.preventDefault();
-
-  // Required fields check
-  const requiredFields = ["title", "price", "discount", "description", "category", "brand"];
-  for (let field of requiredFields) {
-    if (!form[field] || form[field].toString().trim() === "") {
-      alert(`Please fill the required field: ${field}`);
-      return;
-    }
-  }
-
-  // Check at least 1 image
-  if (form.images.length === 0) {
-    alert("Please upload at least 1 product image");
-    return;
-  }
 
   try {
     const formData = new FormData();
@@ -75,11 +52,12 @@ export default function UploadProduct() {
     });
 
     const response = await fetch("http://localhost:5000/api/products/upload", {
-      method: "POST",
-      body: formData,
-    });
+  method: "POST",
+  body: formData,
+});
 
     const data = await response.json();
+
     console.log(data);
 
     if (response.ok) {

@@ -164,7 +164,7 @@ Version:	1.0.0
 	background:transparent;
 }
 .menu-bar li ul li a {
-	color: #fff;
+	color: #878F9A !important;
 	padding: 10px 0px;
 	font-size: 18px;
 	background: transparent !important;
@@ -1456,7 +1456,7 @@ justify-content: flex-start;
   opacity: 0.8;
 }
 .sherah-sidebar_dropdown a.active {
-  display: ;
+  display: block ;
   background: #fff;
   color: #333;
 }
@@ -8228,6 +8228,31 @@ ul {
 }
 body, html {
     overflow-x: hidden; /* horizontal scroll remove karne ke liye */
+}
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-box {
+  background: white;
+  padding: 25px;
+  width: 350px;
+  border-radius: 8px;
+}
+
+.popup-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
 }
 /*======================================
 	End Utilities CSS
