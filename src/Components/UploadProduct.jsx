@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import Layout from "./Layout";
 
 export default function UploadProduct() {
-  const [form, setForm] = useState({
-    title: "",
-    price: "",
-    discount: "",
-    description: "",
-    category: "Men",
-    brand: "NogorPolli",
-    shipping: "",
-    tax: "",
-    tag: "",
-    images: [],
-  });
-
+ 
+  const initialFormState = {
+  title: "",
+  price: "",
+  discount: "",
+  description: "",
+  category: "Men",
+  brand: "NogorPolli",
+  shipping: "",
+  tax: "",
+  tag: "",
+  images: [],
+};
+const [form, setForm] = useState(initialFormState);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm((current) => ({
@@ -31,8 +32,34 @@ export default function UploadProduct() {
     }));
   };
 
-  const handleSubmit = async (event) => {
+ const handleSubmit = async (event) => {
   event.preventDefault();
+
+  const priceRegex = /^\d+(\.\d{0,2})?$/;
+
+  // Required validations
+  if (!form.title || !form.price || !form.discount || !form.description || !form.category || !form.brand || !form.shipping) {
+    alert("Please fill all required fields");
+    return;
+  }
+
+  // Price validation
+  if (!priceRegex.test(form.price)) {
+    alert("Price must be a valid number (integer or decimal)");
+    return;
+  }
+
+  // Discount validation
+  if (!priceRegex.test(form.discount)) {
+    alert("Discount must be a valid number (integer or decimal)");
+    return;
+  }
+
+  // Image validation
+  if (form.images.length === 0) {
+    alert("Please upload at least 1 product image");
+    return;
+  }
 
   try {
     const formData = new FormData();
@@ -52,19 +79,25 @@ export default function UploadProduct() {
     });
 
     const response = await fetch("http://localhost:5000/api/products/upload", {
-  method: "POST",
-  body: formData,
-});
+      method: "POST",
+      body: formData,
+    });
 
     const data = await response.json();
 
-    console.log(data);
-
     if (response.ok) {
       alert("Product uploaded successfully");
+      if (response.ok) {
+  alert("Product uploaded successfully");
+
+  setForm(initialFormState);
+
+  document.getElementById("input-img1").value = "";
+}
     } else {
       alert("Upload failed");
     }
+
   } catch (error) {
     console.error(error);
   }
@@ -117,6 +150,7 @@ export default function UploadProduct() {
                                       name="title"
                                       value={form.title}
                                       onChange={handleChange}
+                                      required
                                     />
                                   </div>
                                 </div>
@@ -132,7 +166,8 @@ export default function UploadProduct() {
                                       type="text"
                                       name="price"
                                       value={form.price}
-                                      onChange={handleChange}
+                                      onChange={handleChange} 
+                                      required
                                     />
                                   </div>
                                 </div>
@@ -149,6 +184,7 @@ export default function UploadProduct() {
                                       name="discount"
                                       value={form.discount}
                                       onChange={handleChange}
+                                      required
                                     />
                                   </div>
                                 </div>
@@ -164,6 +200,7 @@ export default function UploadProduct() {
                                       name="description"
                                       value={form.description}
                                       onChange={handleChange}
+                                      required
                                     />
                                   </div>
                                 </div>
