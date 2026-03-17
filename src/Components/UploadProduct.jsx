@@ -236,7 +236,7 @@ const [brands, setBrands] = useState([]);
                                   >
                                    <option value="">Select Category</option>
                         {categories.map(cat => (
-                          <option key={cat.Id} value={cat.Name}>{cat.Name}</option>
+                          <option key={cat.Id} value={cat.Id}>{cat.Name}</option>
                         ))}
 
                                   </select>
@@ -254,7 +254,7 @@ const [brands, setBrands] = useState([]);
                                   >
                                    <option value="">Select Brand</option>
                         {brands.map(brand => (
-                          <option key={brand.Id} value={brand.Name}>{brand.Name}</option>
+                          <option key={brand.Id} value={brand.Id}>{brand.Name}</option>
                         ))}
                                   </select>
                                 </div>

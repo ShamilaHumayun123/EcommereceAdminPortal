@@ -6,7 +6,7 @@ const uploadProduct = async (req, res) => {
       return res.status(400).json({ message: "No images uploaded" });
     }
 
-    // Map filenames to array (for model)
+    // Convert uploaded files to paths
     const imageFiles = req.files.map(file => `/uploads/${file.filename}`);
 
     const productData = {
@@ -14,15 +14,17 @@ const uploadProduct = async (req, res) => {
       price: parseFloat(req.body.price) || 0,
       discount: parseFloat(req.body.discount) || 0,
       description: req.body.description,
+
+      
       category: req.body.category,
       brand: req.body.brand,
+
       shipping: parseFloat(req.body.shipping) || 0,
       tax: parseFloat(req.body.tax) || 0,
       tag: req.body.tag,
-      images: imageFiles 
+      images: imageFiles
     };
 
-    // Call the correct model function
     await Product.create(productData);
 
     res.status(201).json({ message: "Product uploaded successfully" });

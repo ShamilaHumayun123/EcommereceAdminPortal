@@ -21,6 +21,7 @@ function App() {
         <Route path="/category-table" element={<CategoryTable />} />
         <Route path="/brand-table" element={<BrandTable />} />
         <Route path="/" element={<UploadProduct />} />
+        <Route path="/upload-product" element={<UploadProduct />} />
       </Routes>
     </Router>
       
