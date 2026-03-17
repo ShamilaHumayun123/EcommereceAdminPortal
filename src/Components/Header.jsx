@@ -30,6 +30,7 @@ const toggleFullScreen = () => {
   }, []);
 
   return (
+    
     <header className="sherah-header">
       <div className="container g-0">
         <div className="row g-0">

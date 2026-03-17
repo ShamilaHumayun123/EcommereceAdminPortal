@@ -330,8 +330,7 @@ justify-content: flex-start;
 }
 
 .sherah-header__middle {
-	justify-content: space-between;
-	gap: 25px;
+	
 	height: 100px;
 	display: flex;
 	align-items: center;
@@ -609,8 +608,7 @@ justify-content: flex-start;
 .sherah-header {
 	position: sticky;
 	top: 0;
-	display: flex;
-	align-items: center;
+	
 	z-index: 5000;
 	background: #fff;
 }
@@ -1456,7 +1454,7 @@ justify-content: flex-start;
   opacity: 0.8;
 }
 .sherah-sidebar_dropdown a.active {
-  display:flex;
+  display: block ;
   background: #fff;
   color: #333;
 }
@@ -2567,7 +2565,7 @@ justify-content: flex-start;
 
   .sherah-contact-card {
 	background: #fff;
-	min-height: 265px;
+
 }
   .sherah-contact-card .sherah-vcard__body {
 	padding: 30px;
@@ -2758,7 +2756,102 @@ justify-content: flex-start;
 	flex-direction: column;
 	gap:20px;
 }
-
+.sherah-header {
+          position: sticky !important;
+          top: 0 !important;
+          z-index: 1000 !important;
+          margin: 0 !important;
+          padding: 8px 0 !important;
+          min-height: auto !important;
+          height: auto !important;
+        }
+        .sherah-header__inner {
+          display: flex !important;
+          align-items: center !important;
+          justify-content: space-between !important;
+          padding: 5px 15px !important;
+          min-height: auto !important;
+          height: auto !important;
+        }
+        .sherah-header__middle {
+          display: flex !important;
+          align-items: center !important;
+          width: 100% !important;
+          padding: 0 !important;
+        }
+        .container.g-0 {
+          padding: 0 !important;
+          max-width: 100% !important;
+        }
+        .row.g-0 {
+          margin: 0 !important;
+        }
+        /* Search form compact */
+        .sherah-header__form-inner {
+          display: flex !important;
+          align-items: center !important;
+          gap: 8px !important;
+        }
+        .sherah-header__form-inner input {
+          padding: 6px 12px !important;
+          font-size: 13px !important;
+          height: 32px !important;
+        }
+        .search-btn {
+          padding: 6px !important;
+          height: 32px !important;
+          display: flex !important;
+          align-items: center !important;
+        }
+        /* Right side icons compact */
+        .sherah-header__group {
+          display: flex !important;
+          align-items: center !important;
+          gap: 12px !important;
+        }
+        .sherah-dark-light button,
+        .sherah-header__zoom button,
+        .sherah-header__dropmenu {
+          padding: 6px !important;
+          height: 32px !important;
+          display: flex !important;
+          align-items: center !important;
+        }
+        .sherah-dark-light svg,
+        .sherah-header__zoom svg,
+        .sherah-header__dropmenu svg {
+          width: 20px !important;
+          height: 20px !important;
+        }
+        /* Author profile compact */
+        .sherah-header__author {
+          display: flex !important;
+          align-items: center !important;
+          gap: 10px !important;
+        }
+        .sherah-header__author-img img {
+          width: 32px !important;
+          height: 32px !important;
+          border-radius: 50% !important;
+        }
+        .sherah-header__author--title {
+          font-size: 13px !important;
+          margin: 0 !important;
+          line-height: 1.2 !important;
+        }
+        .sherah-header__author--text {
+          font-size: 11px !important;
+        }
+        .sherah-default__arrow {
+          width: 12px !important;
+          height: 12px !important;
+        }
+        /* Remove extra spacing */
+        .sherah-header__left,
+        .sherah-header__right {
+          padding: 0 !important;
+          margin: 0 !important;
+        }
 .sherah-table__main .sherah-table__body tr td, .sherah-table__main .sherah-table__head tr th {
 	padding: 8px 12px !important;
 }
@@ -8004,6 +8097,7 @@ blockquote {
 	font-style: italic;
 }
 
+
 /* Customers */
 
 
@@ -8254,6 +8348,8 @@ body, html {
   display: flex;
   justify-content: space-between;
 }
+
+
 /*======================================
 	End Utilities CSS
 ========================================*/
