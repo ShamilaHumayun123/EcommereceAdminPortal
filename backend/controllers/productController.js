@@ -6,8 +6,8 @@ const uploadProduct = async (req, res) => {
       return res.status(400).json({ message: "No images uploaded" });
     }
 
-    const imageFiles = req.files.map(file => file.filename);
-    const imageString = imageFiles.join(",");
+    // Map filenames to array (for model)
+    const imageFiles = req.files.map(file => `/uploads/${file.filename}`);
 
     const productData = {
       title: req.body.title,
@@ -19,12 +19,13 @@ const uploadProduct = async (req, res) => {
       shipping: parseFloat(req.body.shipping) || 0,
       tax: parseFloat(req.body.tax) || 0,
       tag: req.body.tag,
-      images: imageString
+      images: imageFiles 
     };
 
-    await Product.createProduct(productData);
+    // Call the correct model function
+    await Product.create(productData);
 
-    res.status(200).json({ message: "Product uploaded successfully" });
+    res.status(201).json({ message: "Product uploaded successfully" });
   } catch (error) {
     console.error("Upload Product Error:", error);
     res.status(500).json({ message: "Server Error", error: error.message });

@@ -15,11 +15,12 @@ import Sidebar from './Components/Sidebar';
 function App() {
   return (
     <div>
+      
       <Router>
       <Routes>
         <Route path="/category-table" element={<CategoryTable />} />
         <Route path="/brand-table" element={<BrandTable />} />
-        <Route path="/upload-product" element={<UploadProduct />} />
+        <Route path="/" element={<UploadProduct />} />
       </Routes>
     </Router>
       

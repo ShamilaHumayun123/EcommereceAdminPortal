@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "./Layout";
-
+import axios from "axios";
 export default function UploadProduct() {
  
   const initialFormState = {
@@ -16,6 +16,19 @@ export default function UploadProduct() {
   images: [],
 };
 const [form, setForm] = useState(initialFormState);
+const [brands, setBrands] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  // Fetch categories and brands from backend
+  useEffect(() => {
+    axios.get("http://localhost:5000/api/brands")
+      .then(res => setBrands(res.data))
+      .catch(err => console.error("Error fetching brands:", err));
+
+    axios.get("http://localhost:5000/api/categories")
+      .then(res => setCategories(res.data))
+      .catch(err => console.error("Error fetching categories:", err));
+  }, []);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setForm((current) => ({
@@ -54,7 +67,14 @@ const [form, setForm] = useState(initialFormState);
     alert("Discount must be a valid number (integer or decimal)");
     return;
   }
-
+  if (!priceRegex.test(form.shipping)) {
+    alert("Shipping Fee must be a valid number (integer or decimal)");
+    return;
+  }
+  if (!priceRegex.test(form.tax)) {
+    alert("Tax must be a valid number (integer or decimal)");
+    return;
+  }
   // Image validation
   if (form.images.length === 0) {
     alert("Please upload at least 1 product image");
@@ -87,14 +107,13 @@ const [form, setForm] = useState(initialFormState);
 
     if (response.ok) {
       alert("Product uploaded successfully");
-      if (response.ok) {
-  alert("Product uploaded successfully");
+    
 
   setForm(initialFormState);
 
   document.getElementById("input-img1").value = "";
 }
-    } else {
+    else {
       alert("Upload failed");
     }
 
@@ -215,9 +234,11 @@ const [form, setForm] = useState(initialFormState);
                                     value={form.category}
                                     onChange={handleChange}
                                   >
-                                    <option value="Men">Men</option>
-                                    <option value="Women">Women</option>
-                                    <option value="Clock">Clock</option>
+                                   <option value="">Select Category</option>
+                        {categories.map(cat => (
+                          <option key={cat.Id} value={cat.Name}>{cat.Name}</option>
+                        ))}
+
                                   </select>
                                 </div>
                               </div>
@@ -231,9 +252,10 @@ const [form, setForm] = useState(initialFormState);
                                     value={form.brand}
                                     onChange={handleChange}
                                   >
-                                    <option value="NogorPolli">NogorPolli</option>
-                                    <option value="BangBang">BangBang</option>
-                                    <option value="Bagdoom">Bagdoom</option>
+                                   <option value="">Select Brand</option>
+                        {brands.map(brand => (
+                          <option key={brand.Id} value={brand.Name}>{brand.Name}</option>
+                        ))}
                                   </select>
                                 </div>
                               </div>

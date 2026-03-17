@@ -1,0 +1,22 @@
+USE [EcommerceDB]
+GO
+
+/****** Object:  Table [dbo].[Images]    Script Date: 3/18/2026 3:11:28 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Images](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[ForeignId] [int] NOT NULL,
+	[TableName] [nvarchar](50) NOT NULL,
+	[ImagePath] [nvarchar](500) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
